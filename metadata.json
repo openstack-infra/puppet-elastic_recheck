@@ -1,5 +1,5 @@
 {
-  "name": "openstackci-elastic_recheck",
+  "name": "openstackinfra-elastic_recheck",
   "version": "0.0.1",
   "author": "OpenStack CI",
   "summary": "Puppet module for Elastic Recheck",
