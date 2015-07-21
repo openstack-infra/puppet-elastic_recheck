@@ -18,14 +18,14 @@
 #
 class elastic_recheck::bot (
   $gerrit_host,
-  $gerrit_ssh_host_key = '',
+  $gerrit_ssh_host_key = undef,
   $recheck_gerrit_user = 'elasticrecheck',
-  $recheck_ssh_private_key = '',
-  $recheck_ssh_public_key = '',
+  $recheck_ssh_private_key = undef,
+  $recheck_ssh_public_key = undef,
   $recheck_bot_passwd,
   $recheck_bot_nick,
 ) {
-  include elastic_recheck
+  include ::elastic_recheck
 
   file { '/etc/elastic-recheck/elastic-recheck.conf':
     ensure  => present,
@@ -52,7 +52,7 @@ class elastic_recheck::bot (
     require => Class['elastic_recheck'],
   }
 
-  if $recheck_ssh_private_key != '' {
+  if $recheck_ssh_private_key != undef {
     file { '/home/recheck/.ssh/id_rsa':
       owner   => 'recheck',
       group   => 'recheck',
@@ -63,7 +63,7 @@ class elastic_recheck::bot (
     }
   }
 
-  if $recheck_ssh_public_key != '' {
+  if $recheck_ssh_public_key != undef {
     file { '/home/recheck/.ssh/id_rsa.pub':
       owner   => 'recheck',
       group   => 'recheck',
@@ -74,7 +74,7 @@ class elastic_recheck::bot (
     }
   }
 
-  if $gerrit_ssh_host_key != '' {
+  if $gerrit_ssh_host_key != undef {
     file { '/home/recheck/.ssh/known_hosts':
       owner   => 'recheck',
       group   => 'recheck',

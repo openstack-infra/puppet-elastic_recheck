@@ -46,7 +46,7 @@ class elastic_recheck (
     source   => 'https://git.openstack.org/openstack-infra/elastic-recheck',
   }
 
-  include pip
+  include ::pip
   exec { 'install_elastic-recheck' :
     command     => 'pip install /opt/elastic-recheck',
     path        => '/usr/local/bin:/usr/bin:/bin/',
@@ -56,11 +56,11 @@ class elastic_recheck (
   }
 
   file { '/usr/local/bin/er_safe_run.sh':
-    ensure  => present,
-    source  => 'puppet:///modules/elastic_recheck/er_safe_run.sh',
-    mode    => '0755',
-    owner   => 'root',
-    group   => 'root',
+    ensure => present,
+    source => 'puppet:///modules/elastic_recheck/er_safe_run.sh',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
   }
 
   file { '/var/run/elastic-recheck':
