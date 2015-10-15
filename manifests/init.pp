@@ -16,6 +16,8 @@
 # service.
 #
 class elastic_recheck (
+  $git_source_repo = 'https://git.openstack.org/openstack-infra/elastic-recheck',
+  $revision = 'master',
 ) {
 
   # For all static page generation scripts we want to run them
@@ -42,8 +44,8 @@ class elastic_recheck (
   vcsrepo { '/opt/elastic-recheck':
     ensure   => latest,
     provider => git,
-    revision => 'master',
-    source   => 'https://git.openstack.org/openstack-infra/elastic-recheck',
+    revision => $revision,
+    source   => $git_source_repo,
   }
 
   include ::pip
