@@ -20,15 +20,6 @@ class elastic_recheck (
   $revision = 'master',
 ) {
 
-  # For all static page generation scripts we want to run them
-  # both on a cron schedule (see elastic_recheck::cron) and on
-  # any commit. So we need to define commands in a way that
-  # we can trigger an exec here, as well as on cron.
-  $recheck_state_dir = '/var/lib/elastic-recheck'
-  $graph_all_cmd = 'elastic-recheck-graph /opt/elastic-recheck/queries -o all-new.json && mv all-new.json all.json'
-  $graph_gate_cmd = 'elastic-recheck-graph /opt/elastic-recheck/queries -o gate-new.json -q gate && mv gate-new.json gate.json'
-  $uncat_cmd = 'elastic-recheck-uncategorized -d /opt/elastic-recheck/queries -t /usr/local/share/elastic-recheck/templates -o uncategorized-new.html && mv uncategorized-new.html uncategorized.html'
-
   group { 'recheck':
     ensure => 'present',
   }

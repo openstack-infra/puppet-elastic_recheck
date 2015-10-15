@@ -17,11 +17,15 @@
 # service.
 #
 
-class elastic_recheck::cron () {
-  $er_state_path = $::elastic_recheck::recheck_state_dir
-  $graph_all_cmd = $::elastic_recheck::graph_all_cmd
-  $graph_gate_cmd = $::elastic_recheck::graph_gate_cmd
-  $uncat_cmd = $::elastic_recheck::uncat_cmd
+class elastic_recheck::cron (
+  $uncat_cmd_options = undef,
+  $graph_all_cmd_options = undef,
+  $graph_gate_cmd_options = undef,
+) {
+  $er_state_path = '/var/lib/elastic-recheck'
+  $graph_all_cmd = "elastic-recheck-graph /opt/elastic-recheck/queries -o all-new.json ${graph_all_cmd_options} && mv all-new.json all.json"
+  $graph_gate_cmd = "elastic-recheck-graph /opt/elastic-recheck/queries -o gate-new.json -q gate ${graph_gate_cmd_options} && mv gate-new.json gate.json"
+  $uncat_cmd = "elastic-recheck-uncategorized -d /opt/elastic-recheck/queries -t /usr/local/share/elastic-recheck/templates -o uncategorized-new.html ${uncat_cmd_options} && mv uncategorized-new.html uncategorized.html"
 
   cron { 'elastic-recheck-all':
     user        => 'recheck',
