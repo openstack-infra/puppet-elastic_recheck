@@ -12,3 +12,7 @@ host=<%= @gerrit_host %>
 user=<%= @recheck_gerrit_user %>
 query_file=/etc/elastic-recheck/queries
 key=/home/recheck/.ssh/id_rsa
+
+[data_source]
+es_url=<%= @elastic_search_url %>
+db_uri=<%= @subunit2sql_db_uri %>
