@@ -26,6 +26,7 @@ class elastic_recheck::bot (
   $recheck_bot_nick,
   $elastic_search_url = 'http://logstash.openstack.org/elasticsearch',
   $subunit2sql_db_uri = 'mysql+pymysql://query:query@logstash.openstack.org/subunit2sql',
+  $daemon_args = undef,
 ) {
   include ::elastic_recheck
 
@@ -88,11 +89,11 @@ class elastic_recheck::bot (
   }
 
   file { '/etc/init.d/elastic-recheck':
-    ensure => present,
-    mode   => '0755',
-    owner  => 'root',
-    group  => 'root',
-    source => 'puppet:///modules/elastic_recheck/elastic-recheck.init',
+    ensure  => present,
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    content => template('elastic_recheck/elastic-recheck.init.erb'),
   }
 
   service { 'elastic-recheck':

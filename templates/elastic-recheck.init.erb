@@ -18,7 +18,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Elastic Recheck"
 NAME=elastic-recheck
 DAEMON=/usr/local/bin/$NAME
-DAEMON_ARGS=/etc/$NAME/$NAME.conf
+DAEMON_ARGS="<%= @daemon_args %> /etc/$NAME/$NAME.conf"
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=recheck
