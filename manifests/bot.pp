@@ -25,6 +25,7 @@ class elastic_recheck::bot (
   $recheck_bot_passwd,
   $recheck_bot_nick,
   $elastic_search_url = 'http://logstash.openstack.org:80/elasticsearch',
+  $logstash_url = 'http://logstash.openstack.org',
   $subunit2sql_db_uri = 'mysql+pymysql://query:query@logstash.openstack.org/subunit2sql',
   $daemon_args = undef,
 ) {
