@@ -18,9 +18,9 @@
 #
 
 class elastic_recheck::cron (
-  $uncat_cmd_options = undef,
-  $graph_all_cmd_options = undef,
+  $graph_all_cmd_options  = undef,
   $graph_gate_cmd_options = undef,
+  $uncat_cmd_options      = undef,
 ) {
   $er_state_path = '/var/lib/elastic-recheck'
   $graph_all_cmd = "elastic-recheck-graph /opt/elastic-recheck/queries -o all-new.json ${graph_all_cmd_options} && mv all-new.json all.json"

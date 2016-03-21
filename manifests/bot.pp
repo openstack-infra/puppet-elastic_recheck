@@ -18,16 +18,16 @@
 #
 class elastic_recheck::bot (
   $gerrit_host,
-  $gerrit_ssh_host_key = undef,
-  $recheck_gerrit_user = 'elasticrecheck',
-  $recheck_ssh_private_key = undef,
-  $recheck_ssh_public_key = undef,
-  $recheck_bot_passwd,
   $recheck_bot_nick,
-  $elastic_search_url = 'http://logstash.openstack.org:80/elasticsearch',
-  $logstash_url = 'http://logstash.openstack.org',
-  $subunit2sql_db_uri = 'mysql+pymysql://query:query@logstash.openstack.org/subunit2sql',
-  $daemon_args = undef,
+  $recheck_bot_passwd,
+  $daemon_args             = undef,
+  $elastic_search_url      = 'http://logstash.openstack.org:80/elasticsearch',
+  $gerrit_ssh_host_key     = undef,
+  $logstash_url            = 'http://logstash.openstack.org',
+  $recheck_gerrit_user     = 'elasticrecheck',
+  $recheck_ssh_private_key = undef,
+  $recheck_ssh_public_key  = undef,
+  $subunit2sql_db_uri      = 'mysql+pymysql://query:query@logstash.openstack.org/subunit2sql',
 ) {
   include ::elastic_recheck
 

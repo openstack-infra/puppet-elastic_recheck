@@ -17,7 +17,7 @@
 #
 class elastic_recheck (
   $git_source_repo = 'https://git.openstack.org/openstack-infra/elastic-recheck',
-  $revision = 'master',
+  $revision        = 'master',
 ) {
 
   group { 'recheck':
