@@ -25,7 +25,7 @@ class elastic_recheck::cron (
   $er_state_path = '/var/lib/elastic-recheck'
   $graph_all_cmd = "elastic-recheck-graph /opt/elastic-recheck/queries -o all-new.json ${graph_all_cmd_options} && mv all-new.json all.json"
   $graph_gate_cmd = "elastic-recheck-graph /opt/elastic-recheck/queries -o gate-new.json -q gate ${graph_gate_cmd_options} && mv gate-new.json gate.json"
-  $uncat_cmd = "elastic-recheck-uncategorized -d /opt/elastic-recheck/queries -t /usr/local/share/elastic-recheck/templates -o uncategorized-new.html ${uncat_cmd_options} && mv uncategorized-new.html uncategorized.html"
+  $uncat_cmd = "elastic-recheck-uncategorized -d /opt/elastic-recheck/queries -t /usr/local/share/elastic-recheck/templates -o new ${uncat_cmd_options} && mv new/*.html ."
 
   cron { 'elastic-recheck-all':
     user        => 'recheck',
@@ -50,7 +50,7 @@ class elastic_recheck::cron (
     user        => 'recheck',
     minute      => ['20', '50'],
     hour        => '*',
-    command     => "cd ${er_state_path} && er_safe_run.sh ${uncat_cmd}",
+    command     => "cd ${er_state_path} && mkdir new && er_safe_run.sh ${uncat_cmd} && rm -r new",
     environment => 'PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin',
     require     => Class['elastic_recheck']
   }
