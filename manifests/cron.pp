@@ -50,7 +50,7 @@ class elastic_recheck::cron (
     user        => 'recheck',
     minute      => ['20', '50'],
     hour        => '*',
-    command     => "cd ${er_state_path} && mkdir new && er_safe_run.sh ${uncat_cmd} && rm -r new",
+    command     => "cd ${er_state_path} && mkdir -p new && er_safe_run.sh ${uncat_cmd} && rm -r new",
     environment => 'PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin',
     require     => Class['elastic_recheck']
   }
