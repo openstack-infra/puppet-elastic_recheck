@@ -1,4 +1,15 @@
 channels:
+  openstack-neutron:
+    projects:
+      # elastic-recheck doesn't allow to limit reports to patches from a specific repo,
+      # so let's at least scope to bugs that neutron team acknowledged ownership for
+      # in Launchpad
+      - neutron
+    events:
+      # to limit reports to failures that belong to bugs owned by neutron team;
+      # we may revisit it once elastic-recheck learns how to limit the scope of reports
+      # to particular repositories
+      - positive
   openstack-qa:
     projects:
       - all
