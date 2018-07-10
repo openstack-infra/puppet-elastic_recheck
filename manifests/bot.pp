@@ -97,6 +97,15 @@ class elastic_recheck::bot (
     content => template('elastic_recheck/elastic-recheck.init.erb'),
   }
 
+  if versioncmp($::operatingsystemmajrelease, '16.04') >= 0 {
+    exec { 'elastic-recheck-systemd-daemon-reload':
+      command     => '/bin/systemctl daemon-reload',
+      before      => Service['elastic-recheck'],
+      subscribe   => File['/etc/init.d/elastic-recheck'],
+      refreshonly => true,
+    }
+  }
+
   service { 'elastic-recheck':
     ensure    => running,
     enable    => true,
