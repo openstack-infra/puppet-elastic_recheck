@@ -19,4 +19,7 @@ ls_url=<%= @logstash_url %>
 db_uri=<%= @subunit2sql_db_uri %>
 
 [recheckwatch]
-jobs_re=(dsvm|tripleo)
+# TODO(mriedem): With zuul v3 there is a wild west of job names so this
+# regex is table stakes, but there are clearly things missing from this like
+# the various nova-* jobs (nova-multiattach, nova-live-migration, nova-next).
+jobs_re=(dsvm|tripleo|devstack|tempest|grenade)
