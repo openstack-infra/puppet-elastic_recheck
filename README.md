@@ -1,5 +1,3 @@
-# OpenStack Elastic Recheck Module
+# This repo has moved to OpenDev
 
-## Overview
-
-Configures Elastic Recheck.
+It can now be found at [https://opendev.org/opendev/puppet-elastic_recheck](https://opendev.org/opendev/puppet-elastic_recheck)
